@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap");
+
+/* =========================
+   Bootstrap Font Override
+========================= */
+:root {
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+
+  --bs-body-font-family: var(--font-body);
+}
+
+/* =========================
+   Base Styles
+========================= */
+html,
+body,
+#root {
+  min-height: 100%;
+  font-family: var(--font-body) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================
+   Body Text
+========================= */
+body,
+p,
+span,
+a,
+button,
+input,
+textarea,
+label {
+  font-family: var(--font-body) !important;
+  font-weight: 400;
+}
+
+/* =========================
+   Headings (Premium feel)
+========================= */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading) !important;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* =========================
+   Navbar Fix (Bootstrap)
+========================= */
+.navbar,
+.navbar * {
+  font-family: var(--font-body) !important;
+}
+
+/* =========================
+   Scrollbar (clean minimal)
+========================= */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c7c7c7;
+  border-radius: 99px;
+}
