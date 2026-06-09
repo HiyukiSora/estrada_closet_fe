@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const axiosInstance = axios.create({
-    baseURL: 'http://localhost:80/estrada_closet_be/api',
+    baseURL: import.meta.env.VITE_API_URL || 'http://localhost/estrada_closet_be/api',
     headers: {
         'Content-Type': 'application/json'
     }
