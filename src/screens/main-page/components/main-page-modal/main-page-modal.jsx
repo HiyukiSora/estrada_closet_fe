@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Row, Col, Form, Modal, Badge } from 'react-bootstrap'
 import { getCommaWithDecimal } from '../../../../config/functions';
+import { imageUrl } from '../../../../config/image-base';
 
 export const MainPageModal = (props) => {
     return (
@@ -15,7 +16,7 @@ export const MainPageModal = (props) => {
                         {/* Product Image */}
                         <Col md={5} className="d-flex align-items-center justify-content-center">
                             <img
-                                src={`http://localhost:80/estrada_closet_be/${props.selectedProduct?.image}`}
+                                src={imageUrl(props.selectedProduct?.image)}
                                 alt="Product"
                                 className="img-fluid rounded"
                                 style={{

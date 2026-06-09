@@ -2,10 +2,9 @@ import { ADD_PRODUCT, DELETE_PRODUCT, GET_PRODUCTS, UPDATE_PRODUCT } from "../..
 import { axiosInstance } from "../axios-instance";
 
 export const addProduct = async (data) => {
+    const isMultipart = data instanceof FormData;
     const response = await axiosInstance.post(ADD_PRODUCT, data, {
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
+        headers: isMultipart ? { 'Content-Type': 'multipart/form-data' } : {}
     });
     return response;
 };
@@ -16,10 +15,9 @@ export const getProducts = async () => {
 };
 
 export const updateProduct = async (id, data) => {
+    const isMultipart = data instanceof FormData;
     const response = await axiosInstance.post(`${UPDATE_PRODUCT}?id=${id}`, data, {
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
+        headers: isMultipart ? { 'Content-Type': 'multipart/form-data' } : {}
     });
     return response;
 };

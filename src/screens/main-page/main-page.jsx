@@ -6,6 +6,7 @@ import { getProducts } from '../../services/products/products-services';
 import { getColors } from '../../services/color/color-services';
 import { getSizes } from '../../services/size/size-services';
 import { getCommaWithDecimal, priceRanges } from '../../config/functions';
+import { imageUrl } from '../../config/image-base';
 import { createCartItem } from '../../services/cart/cart-services';
 import { useCartItemCountStore } from '../../stores/use-context-stores';
 import { MainPageModal } from './components/main-page-modal/main-page-modal';
@@ -281,7 +282,7 @@ export const MainPage = () => {
 
                       <Card.Img
                         variant="top"
-                        src={`http://localhost:80/estrada_closet_be/${product.image}`}
+                        src={imageUrl(product.image)}
                         className="card-img-top"
                       />
 

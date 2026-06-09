@@ -7,6 +7,7 @@ import { FaSearch, FaEye, FaTruck, FaStore, FaMoneyBillWave, FaMobile } from 're
 import { toast } from 'react-toastify'
 import { getOrders, updateStatusOrder } from '../../../../services/order/order-services'
 import { formatCurrency, formatDate, formatStatus } from '../../../../config/functions'
+import { imageUrl } from '../../../../config/image-base'
 import { ORDER_STATUSES, PAYMENT_BADGE, STATUS_BADGE } from './constants/order-component-constants'
 
 export const OrdersComponentTab = () => {
@@ -250,7 +251,7 @@ export const OrdersComponentTab = () => {
                                     <div className="mt-2">
                                         <span className="text-muted" style={{ fontSize: '0.8rem' }}>Payment screenshot: </span>
                                         <a
-                                            href={`http://localhost:80/estrada_closet_be/${selectedOrder?.payment_screenshot}`}
+                                            href={imageUrl(selectedOrder?.payment_screenshot)}
                                             target="_blank"
                                             rel="noreferrer"
                                             style={{ fontSize: '0.8rem' }}
@@ -278,7 +279,7 @@ export const OrdersComponentTab = () => {
                                             style={{ width: 44, height: 44, fontSize: '1.2rem' }}
                                         >
                                             <Image
-                                                src={`http://localhost:80/estrada_closet_be/${item?.image}`}
+                                                src={imageUrl(item?.image)}
                                                 rounded
                                                 style={{ width: 60, height: 60, objectFit: 'cover' }}
                                             />

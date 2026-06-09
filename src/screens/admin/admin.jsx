@@ -21,11 +21,13 @@ import { FaPlus, FaEdit, FaTrash, FaBoxOpen, FaSearch, FaSignOutAlt } from 'reac
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import { addProduct, deleteProduct, getProducts, updateProduct } from '../../services/products/products-services'
+import { uploadImage } from '../../services/cloudinary'
 import { SizesComponentTab } from './components/size/size-components'
 import { ColorsComponentTab } from './components/colors/colors-components'
 import { getSizes } from '../../services/size/size-services'
 import { getColors } from '../../services/color/color-services'
 import { fetchProductSizeCategories, getCommaWithDecimal, stats, validateForm } from '../../config/functions'
+import { imageUrl } from '../../config/image-base'
 import { formValue } from './model/admin-models'
 import { OrdersComponentTab } from './components/orders/orders-component'
 import { getOrders } from '../../services/order/order-services'
@@ -80,7 +82,7 @@ export const Admin = () => {
       price: product.price || '',
       stock: product.stock || '',
       image: null,
-      imagePreview: product.image ? `http://localhost:80/estrada_closet_be/${product.image}` : '',
+      imagePreview: product.image ? imageUrl(product.image) : '',
       description: product.description || '',
       brand: product.brand || '',
       status: product.status || 'active',
@@ -113,19 +115,27 @@ export const Admin = () => {
       return;
     }
 
-    const formData = new FormData();
-    formData.append('name', form.name);
-    formData.append('brand', form.brand);
-    formData.append('description', form.description);
-    formData.append('price', form.price);
-    formData.append('stock', form.stock);
-    formData.append('status', form.status);
-    formData.append('image', form.image);
-    formData.append('sizes', JSON.stringify(form.sizes));
-    formData.append('colors', JSON.stringify(form.colors));
-
     try {
-      const response = await addProduct(formData);
+      let imageUrl = form.image;
+      if (form.image instanceof File) {
+        const cloudinaryToast = toast.loading('Uploading image...');
+        imageUrl = await uploadImage(form.image);
+        toast.dismiss(cloudinaryToast);
+      }
+
+      const payload = {
+        name: form.name,
+        brand: form.brand,
+        description: form.description,
+        price: form.price,
+        stock: form.stock,
+        status: form.status,
+        image: imageUrl,
+        sizes: form.sizes,
+        colors: form.colors
+      };
+
+      const response = await addProduct(payload);
       if (response.status === 200) {
         toast.success('Product added successfully!');
         setFlag(!flag);
@@ -148,19 +158,27 @@ export const Admin = () => {
       return;
     }
 
-    const formData = new FormData();
-    formData.append('name', form.name);
-    formData.append('brand', form.brand);
-    formData.append('description', form.description);
-    formData.append('price', form.price);
-    formData.append('stock', form.stock);
-    formData.append('status', form.status);
-    formData.append('image', form.image);
-    formData.append('sizes', JSON.stringify(form.sizes));
-    formData.append('colors', JSON.stringify(form.colors));
-
     try {
-      const response = await updateProduct(editingProduct.id, formData);
+      let imageUrl = form.image;
+      if (form.image instanceof File) {
+        const cloudinaryToast = toast.loading('Uploading image...');
+        imageUrl = await uploadImage(form.image);
+        toast.dismiss(cloudinaryToast);
+      }
+
+      const payload = {
+        name: form.name,
+        brand: form.brand,
+        description: form.description,
+        price: form.price,
+        stock: form.stock,
+        status: form.status,
+        image: imageUrl,
+        sizes: form.sizes,
+        colors: form.colors
+      };
+
+      const response = await updateProduct(editingProduct.id, payload);
       if (response.status === 200) {
         toast.success('Product updated successfully!');
         setFlag(!flag);
@@ -301,7 +319,7 @@ export const Admin = () => {
                         <td>
                           <div className="d-flex align-items-center gap-3">
                             <Image
-                              src={`http://localhost:80/estrada_closet_be/${product.image}`}
+                              src={imageUrl(product.image)}
                               rounded
                               style={{ width: 52, height: 52, objectFit: 'cover' }}
                             />

@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Header } from '../../components/header/header';
 import { fetchQuantitiesPrice, getCommaWithDecimal } from '../../config/functions';
+import { imageUrl } from '../../config/image-base';
 import { useCartItemCountStore, useCartItemSelectionStore, useCheckoutCartItemStore } from '../../stores/use-context-stores';
 import { placeOrder } from '../../services/order/order-services';
 
@@ -783,7 +784,7 @@ export const Checkout = () => {
                                         <div key={i} className="d-flex align-items-center gap-2 mt-3">
                                             <div className="position-relative flex-shrink-0">
                                                 <Image
-                                                    src={`http://localhost:80/estrada_closet_be/${item.product_image}`}
+                                                    src={imageUrl(item.product_image)}
                                                     rounded
                                                     style={{ width: 52, height: 64, objectFit: 'cover' }}
                                                 />

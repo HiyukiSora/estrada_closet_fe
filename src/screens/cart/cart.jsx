@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { Header } from '../../components/header/header';
 import { deleteBulkCartItem, deleteCartItem, getCartItems, validateCartItemQuantity } from '../../services/cart/cart-services';
 import { getCommaWithDecimal, getSelectedItems } from '../../config/functions';
+import { imageUrl } from '../../config/image-base';
 import { useCartItemCountStore, useCartItemSelectionStore, useCheckoutCartItemStore } from '../../stores/use-context-stores';
 import { LoadingModal } from '../../components/loading-modal/loading-modal';
 
@@ -264,7 +265,7 @@ export const Cart = () => {
                                                     <td>
                                                         <div className="d-flex align-items-center gap-3">
                                                             <Image
-                                                                src={`http://localhost:80/estrada_closet_be/${item.product_image}`}
+                                                                src={imageUrl(item.product_image)}
                                                                 rounded
                                                                 style={{ width: '64px', height: '80px', objectFit: 'cover' }}
                                                             />

@@ -3,6 +3,7 @@ import { Button, Modal, Image } from 'react-bootstrap';
 import './styles/receipt-modal-styles.css';
 import { STATUS_COLOR, STATUS_LABEL } from '../../constants/constants';
 import { fmt, fmtDate, generateReceiptPDF } from '../../config/functions';
+import { imageUrl } from '../../config/image-base';
 
 export const ReceiptModal = ({ show, order, onClose }) => {
     if (!order) return null;
@@ -83,7 +84,7 @@ export const ReceiptModal = ({ show, order, onClose }) => {
                                         justifyContent: "center", fontSize: 18,
                                     }}>
                                         <Image
-                                                src={`http://localhost:80/estrada_closet_be/${item?.image}`}
+                                                src={imageUrl(item?.image)}
                                                 rounded
                                                 style={{ width: 60, height: 60, objectFit: 'cover' }}
                                             />

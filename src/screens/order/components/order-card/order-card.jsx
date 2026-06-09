@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { formatAddress, formatDate, getCommaWithDecimal, getCommaWithDecimalEnPh, STATUS_CONFIG } from "../../../../config/functions";
+import { imageUrl } from "../../../../config/image-base";
 import { btnStyle } from "../../styles/order-style";
 import { ItemImage } from "../item-thumb/item-thumb";
 import { CancelOrderModal } from "../cancel-order-modal/cancel-order-modal";
@@ -162,7 +163,7 @@ export const OrderCard = ({ order, isOpen, onToggle }) => {
                                         border: "1px solid #ede8e3",
                                     }}
                                 >
-                                    <ItemImage image={`http://localhost:80/estrada_closet_be/${item.image}`} />
+                                    <ItemImage image={imageUrl(item.image)} />
                                     <div style={{ flex: 1, minWidth: 0 }}>
                                         <div style={{ fontWeight: 600, fontSize: 14, color: "#1a1208", marginBottom: 3 }}>
                                             {item.product_name}
